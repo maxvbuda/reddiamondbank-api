@@ -19,3 +19,14 @@ services:
       # Secret word/phrase you choose — needed to reset any account's password.
       - key: RESET_SECRET
         sync: false
+      # SMTP email settings for verification emails.
+      - key: EMAIL_HOST
+        sync: false
+      - key: EMAIL_PORT
+        value: "587"
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: EMAIL_FROM
+        sync: false

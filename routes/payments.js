@@ -9,6 +9,13 @@ const router = express.Router();
 router.post('/send', authMiddleware, async (req, res) => {
   try {
     const fromUsername = req.auth.username;
+
+    // Require email verification before sending payments.
+    const senderCheck = await User.findOne({ username: fromUsername });
+    if (!senderCheck?.isVerified) {
+      return res.status(403).json({ error: 'Please verify your email before sending payments.' });
+    }
+
     const { to, note } = req.body || {};
     const amount = Number(req.body && req.body.amount);
 
