@@ -1,0 +1,18 @@
+# Render Blueprint. If you deploy the whole RedDiamondBank repo, set the
+# service Root Directory to "server" in the Render dashboard (or move this
+# file to the repo root and add `rootDir: server`).
+services:
+  - type: web
+    name: reddiamondbank-api
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      # You paste this in the Render dashboard — it is never stored in git.
+      - key: MONGODB_URI
+        sync: false
+      # Render auto-generates a strong secret for signing login tokens.
+      - key: JWT_SECRET
+        generateValue: true
