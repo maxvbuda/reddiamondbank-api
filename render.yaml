@@ -16,3 +16,6 @@ services:
       # Render auto-generates a strong secret for signing login tokens.
       - key: JWT_SECRET
         generateValue: true
+      # Secret word/phrase you choose — needed to reset any account's password.
+      - key: RESET_SECRET
+        sync: false

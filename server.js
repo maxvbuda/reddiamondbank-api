@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const authRoutes = require('./routes/auth');
 const paymentRoutes = require('./routes/payments');
+const resetRoutes = require('./routes/reset');
 
 const app = express();
 app.use(cors());
@@ -20,6 +21,7 @@ app.get('/health', (_req, res) => {
 
 app.use('/api', authRoutes);
 app.use('/api', paymentRoutes);
+app.use('/api', resetRoutes);
 
 // 404 fallback for unknown API routes.
 app.use((req, res) => {
